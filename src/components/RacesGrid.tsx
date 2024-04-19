@@ -1,55 +1,47 @@
-import { useEffect, useState } from "react";
-
 import {
   Grid,
   GridItem,
-  Input,
   Button,
   Select,
-  FormControl,
   FormLabel,
   Card,
+  Spinner,
 } from "@chakra-ui/react";
-
+import { useQuery } from "@tanstack/react-query";
+import fetchRace from "../fetchRace";
 import RaceCard from "./RaceCard";
+
 export default function RacesGrid() {
-  const [races, setRaces] = useState([]);
+  const results = useQuery(["races"], fetchRace);
 
-  useEffect(() => {
-    async function getRaces() {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzp1STtZ6ZYrFH9XVItcMun8WNRntbmkQsdUS-Hw49IXbxPSTNIMpjiCU8QUZxBknnW/exec?path=Sheet1&name"
-      );
-      const result = await response.json();
-      setRaces(result);
-    }
+  if (results.isLoading) {
+    return <Spinner />;
+  }
 
-    getRaces();
-  }, []);
+  const races = results.data;
 
   return (
     <>
       <Card m={5} p={5} variant="outline" boxShadow="md">
-        <FormControl>
+        <form>
           <FormLabel htmlFor="distance">Distance</FormLabel>
-          <Select id="distance">
+          <Select name="distance" id="distance" mb={2}>
+            <option></option>
             <option value="5k">5k</option>
             <option value="10k">10K</option>
-            <option value="half-marathon">Half-Marathon</option>
-            <option value="marathon">Marathon</option>
+            <option value="Half marathon">Half-Marathon</option>
+            <option value="Marathon">Marathon</option>
           </Select>
 
-          <FormLabel htmlFor="distance">Location</FormLabel>
-          <Input placeholder="ex. Toronto" />
           <Button type="submit" colorScheme="gray">
             Search
           </Button>
-        </FormControl>
+        </form>
       </Card>
       <Grid templateColumns={{ lg: "repeat(3, 1fr)" }} gap={5} m={5}>
-        {races ? (
+        {races.length ? (
           races.map((race) => (
-            <GridItem>
+            <GridItem key={race.id}>
               <RaceCard
                 name={race.name}
                 date={race.date}

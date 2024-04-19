@@ -1,10 +1,20 @@
 import { Heading, Box } from "@chakra-ui/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import RacesGrid from "./components/RacesGrid";
 import heroImage from "./assets/hero.jpg";
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    },
+  },
+});
+
 function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Box
         display="flex"
         alignItems="center"
@@ -31,7 +41,7 @@ function App() {
       </Box>
 
       <RacesGrid />
-    </>
+    </QueryClientProvider>
   );
 }
 

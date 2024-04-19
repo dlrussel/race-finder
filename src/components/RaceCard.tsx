@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 
 interface RaceCardProps {
-  id?: number;
   name: string;
   date: string;
   link: string;
