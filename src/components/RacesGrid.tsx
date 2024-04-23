@@ -9,7 +9,16 @@ import {
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import fetchRace from "../fetchRace";
-import RaceCard from "./RaceCard";
+import RaceCard from "./RaceCard/RaceCard";
+
+type Race = {
+  id: number;
+  name: string;
+  date: string;
+  link: string;
+  location: string;
+  distance: string;
+};
 
 export default function RacesGrid() {
   const results = useQuery(["races"], fetchRace);
@@ -40,7 +49,7 @@ export default function RacesGrid() {
       </Card>
       <Grid templateColumns={{ lg: "repeat(3, 1fr)" }} gap={5} m={5}>
         {races.length ? (
-          races.map((race) => (
+          races.map((race: Race) => (
             <GridItem key={race.id}>
               <RaceCard
                 name={race.name}
