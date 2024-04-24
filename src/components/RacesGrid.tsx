@@ -16,8 +16,10 @@ type Race = {
   name: string;
   date: string;
   link: string;
-  location: string;
-  distance: string;
+  country: string;
+  state: string;
+  city: string;
+  distanceName: string;
 };
 
 export default function RacesGrid() {
@@ -27,7 +29,7 @@ export default function RacesGrid() {
     return <Spinner />;
   }
 
-  const races = results.data;
+  const races = results?.data?.races;
 
   return (
     <>
@@ -36,9 +38,9 @@ export default function RacesGrid() {
           <FormLabel htmlFor="distance">Distance</FormLabel>
           <Select name="distance" id="distance" mb={2}>
             <option></option>
-            <option value="5k">5k</option>
-            <option value="10k">10K</option>
-            <option value="Half marathon">Half-Marathon</option>
+            <option value="5K">5k</option>
+            <option value="10K">10K</option>
+            <option value="Half-Marathon">Half-Marathon</option>
             <option value="Marathon">Marathon</option>
           </Select>
 
@@ -55,8 +57,10 @@ export default function RacesGrid() {
                 name={race.name}
                 date={race.date}
                 link={race.link}
-                location={race.location}
-                distance={race.distance}
+                city={race.city}
+                country={race.country}
+                state={race.state}
+                distance={race.distanceName}
               />
             </GridItem>
           ))

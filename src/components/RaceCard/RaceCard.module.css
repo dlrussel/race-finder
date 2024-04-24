@@ -17,3 +17,11 @@
   gap: 8px;
   font-weight: bold;
 }
+
+.card__detailsDistance {
+  border: 2px #d8e0fd solid;
+  border-radius: 4px;
+  padding: 0 5px;
+  color: #6950f3;
+  background-color: #e7e8ff;
+}
