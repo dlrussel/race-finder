@@ -1,12 +1,14 @@
 import { Card, CardHeader, Heading, Text } from "@chakra-ui/react";
 
 import { StarIcon } from "@chakra-ui/icons";
+
+import { Link } from "react-router-dom";
 import styles from "./RaceCard.module.css";
 
 type RaceCardProps = {
+  id: string;
   name: string;
   date: string;
-  link: string;
   city: string;
   state: string;
   country: string;
@@ -14,9 +16,9 @@ type RaceCardProps = {
 };
 
 const RaceCard = ({
+  id,
   name,
   date,
-  link,
   city,
   state,
   country,
@@ -45,32 +47,31 @@ const RaceCard = ({
     return `${month} ${day}, ${year}`;
   }
   return (
-    <Card variant="outline" h="100%" w="100%" boxShadow="md">
-      <CardHeader>
-        <Heading size="md" pb={3}>
-          {name}
-        </Heading>
-        <span className={styles.card__detailsDistance}>{distance}</span>
-      </CardHeader>
-      <div className={styles.card__details}>
-        <Text>{formatDate(date)}</Text>
+    <Link to={`/race/${id}`}>
+      <Card variant="outline" h="100%" w="100%" boxShadow="md">
+        <CardHeader>
+          <Heading size="md" pb={3}>
+            {name}
+          </Heading>
+          <span className={styles.card__detailsDistance}>{distance}</span>
+        </CardHeader>
+        <div className={styles.card__details}>
+          <Text>{formatDate(date)}</Text>
 
-        <div className={styles.card__detailsRating}>
-          <span>4.0</span>
-          <span>
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-          </span>
-          <span>(372)</span>
+          <div className={styles.card__detailsRating}>
+            <span>4.0</span>
+            <span>
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+            </span>
+            <span>(372)</span>
+          </div>
+          <Text>{`${city}, ${state}, ${country}`}</Text>
         </div>
-        <Text>{`${city}, ${state}, ${country}`}</Text>
-        <a className={styles.card__detailsLink} href={link} target="_blank">
-          Register Here
-        </a>
-      </div>
-    </Card>
+      </Card>
+    </Link>
   );
 };
 

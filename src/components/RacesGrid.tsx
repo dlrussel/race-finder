@@ -12,7 +12,7 @@ import fetchRace from "../fetchRace";
 import RaceCard from "./RaceCard/RaceCard";
 
 type Race = {
-  id: number;
+  id: string;
   name: string;
   date: string;
   link: string;
@@ -54,9 +54,9 @@ export default function RacesGrid() {
           races.map((race: Race) => (
             <GridItem key={race.id}>
               <RaceCard
+                id={race.id}
                 name={race.name}
                 date={race.date}
-                link={race.link}
                 city={race.city}
                 country={race.country}
                 state={race.state}

@@ -2,6 +2,8 @@ import { Heading, Box } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import RacesGrid from "./components/RacesGrid";
 import heroImage from "./assets/hero.jpg";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RaceDetails from "./components/RaceDetails";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,34 +16,39 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        bgImage={`url(${heroImage})`}
-        bgPosition="center"
-        bgRepeat="no-repeat"
-        bgSize="100%"
-        minHeight={{ base: "xs", lg: "sm" }}
-        filter="grayscale(85%)"
-      >
-        <Heading
-          as="h1"
-          fontSize={{ base: "3rem", lg: "6rem" }}
-          textAlign="center"
-          color="white"
-          backgroundColor="black"
-          opacity="85%"
-          px={20}
-          py={5}
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          bgImage={`url(${heroImage})`}
+          bgPosition="center"
+          bgRepeat="no-repeat"
+          bgSize="100%"
+          minHeight={{ base: "xs", lg: "sm" }}
+          filter="grayscale(85%)"
         >
-          Find a race
-        </Heading>
-      </Box>
+          <Heading
+            as="h1"
+            fontSize={{ base: "3rem", lg: "6rem" }}
+            textAlign="center"
+            color="white"
+            backgroundColor="black"
+            opacity="85%"
+            px={20}
+            py={5}
+          >
+            Find a race
+          </Heading>
+        </Box>
 
-      <RacesGrid />
-    </QueryClientProvider>
+        <Routes>
+          <Route path="/" element={<RacesGrid />} />
+          <Route path="/race/:id" element={<RaceDetails />} />
+        </Routes>
+      </QueryClientProvider>
+    </BrowserRouter>
   );
 }
 
