@@ -1,4 +1,4 @@
-const fetchRace = async () => {
+const fetchRaceList = async () => {
   const apiRes = await fetch("http://localhost:3001/api/races");
 
   //if it's an unsucessful request react query wants us to throw an error
@@ -9,4 +9,4 @@ const fetchRace = async () => {
   return apiRes.json();
 };
 
-export default fetchRace;
+export default fetchRaceList;

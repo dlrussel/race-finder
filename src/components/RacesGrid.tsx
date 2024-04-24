@@ -8,7 +8,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-import fetchRace from "../fetchRace";
+import fetchRaceList from "../fetchRaceList";
 import RaceCard from "./RaceCard/RaceCard";
 
 type Race = {
@@ -23,7 +23,7 @@ type Race = {
 };
 
 export default function RacesGrid() {
-  const results = useQuery(["races"], fetchRace);
+  const results = useQuery(["races"], fetchRaceList);
 
   if (results.isLoading) {
     return <Spinner />;
