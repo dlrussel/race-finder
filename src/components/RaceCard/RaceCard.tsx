@@ -22,6 +22,28 @@ const RaceCard = ({
   country,
   distance,
 }: RaceCardProps) => {
+  function formatDate(date: string) {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const dateObject = new Date(date);
+    const month = months[dateObject.getMonth()];
+    const day = dateObject.getDate();
+    const year = dateObject.getFullYear();
+
+    return `${month} ${day}, ${year}`;
+  }
   return (
     <Card variant="outline" h="100%" w="100%" boxShadow="md">
       <CardHeader>
@@ -31,7 +53,7 @@ const RaceCard = ({
         <span className={styles.card__detailsDistance}>{distance}</span>
       </CardHeader>
       <div className={styles.card__details}>
-        <Text>{date}</Text>
+        <Text>{formatDate(date)}</Text>
 
         <div className={styles.card__detailsRating}>
           <span>4.0</span>
