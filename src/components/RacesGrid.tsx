@@ -8,40 +8,56 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-import fetchRaceList from "../fetchRaceList";
+// import fetchRaceList from "../fetchRaceList";
 import RaceCard from "./RaceCard/RaceCard";
+import { useState } from "react";
+import fetchSearch from "../fetchSearch";
+import { Distance } from "../APIResponsesTypes";
 
-type Race = {
-  id: string;
-  name: string;
-  date: string;
-  link: string;
-  country: string;
-  state: string;
-  city: string;
-  distanceName: string;
-};
+const DISTANCES: Distance[] = ["5K", "10K", "Half-Marathon", "Marathon"];
 
 export default function RacesGrid() {
-  const results = useQuery(["races"], fetchRaceList);
+  const [requestParams, setRequestParams] = useState({
+    distance: "" as Distance,
+  });
+  const [distanceVal, setDistanceVal] = useState("" as Distance);
+
+  const results = useQuery(["search", requestParams], fetchSearch);
 
   if (results.isLoading) {
     return <Spinner />;
   }
 
-  const races = results?.data?.races;
+  const races = results?.data?.races ?? [];
 
   return (
     <>
       <Card m={5} p={5} variant="outline" boxShadow="md">
-        <form>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            const obj = {
+              distance: (formData.get("distance") as Distance) ?? "",
+            };
+
+            setRequestParams(obj);
+          }}
+        >
           <FormLabel htmlFor="distance">Distance</FormLabel>
-          <Select name="distance" id="distance" mb={2}>
-            <option></option>
-            <option value="5K">5k</option>
-            <option value="10K">10K</option>
-            <option value="Half-Marathon">Half-Marathon</option>
-            <option value="Marathon">Marathon</option>
+          <Select
+            name="distance"
+            id="distance"
+            mb={2}
+            value={distanceVal}
+            onChange={(e) => {
+              setDistanceVal(e.target.value as Distance);
+            }}
+          >
+            <option />
+            {DISTANCES.map((distance) => (
+              <option key={distance}>{distance}</option>
+            ))}
           </Select>
 
           <Button type="submit" colorScheme="gray">
@@ -51,7 +67,7 @@ export default function RacesGrid() {
       </Card>
       <Grid templateColumns={{ lg: "repeat(3, 1fr)" }} gap={5} m={5}>
         {races.length ? (
-          races.map((race: Race) => (
+          races.map((race) => (
             <GridItem key={race.id}>
               <RaceCard
                 id={race.id}

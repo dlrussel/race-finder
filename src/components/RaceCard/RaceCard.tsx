@@ -1,4 +1,4 @@
-import { Card, CardHeader, Heading, Text } from "@chakra-ui/react";
+import { Card, CardHeader, Heading, Text, Divider } from "@chakra-ui/react";
 
 import { StarIcon } from "@chakra-ui/icons";
 
@@ -41,7 +41,7 @@ const RaceCard = ({
     ];
     const dateObject = new Date(date);
     const month = months[dateObject.getMonth()];
-    const day = dateObject.getDate();
+    const day = dateObject.getUTCDate();
     const year = dateObject.getFullYear();
 
     return `${month} ${day}, ${year}`;
@@ -55,6 +55,7 @@ const RaceCard = ({
           </Heading>
           <span className={styles.card__detailsDistance}>{distance}</span>
         </CardHeader>
+        <Divider orientation="horizontal" />
         <div className={styles.card__details}>
           <Text>{formatDate(date)}</Text>
 
