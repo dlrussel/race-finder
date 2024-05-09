@@ -8,7 +8,7 @@ export interface Race {
   country: string;
   state: string;
   city: string;
-  distanceName: Distance;
+  distance: Distance;
 }
 
 export interface RaceAPIResponse {

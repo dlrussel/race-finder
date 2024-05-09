@@ -8,7 +8,7 @@ const fetchSearch: QueryFunction<
   const { distance } = queryKey[1];
 
   const apiRes = await fetch(
-    `http://localhost:3001/api/races/?distance=${distance}`
+    `http://localhost:3000/api/v1/races/?distance=${distance}`
   );
 
   if (!apiRes.ok) {

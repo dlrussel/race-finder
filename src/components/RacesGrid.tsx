@@ -76,7 +76,7 @@ export default function RacesGrid() {
                 city={race.city}
                 country={race.country}
                 state={race.state}
-                distance={race.distanceName}
+                distance={race.distance}
               />
             </GridItem>
           ))
