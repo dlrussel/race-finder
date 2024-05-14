@@ -1,9 +1,8 @@
 import { Card, CardHeader, Heading, Text, Divider } from "@chakra-ui/react";
-
 import { StarIcon } from "@chakra-ui/icons";
-
 import { Link } from "react-router-dom";
 import styles from "./RaceCard.module.css";
+import formatDate from "../../utilities/formatDate";
 
 type RaceCardProps = {
   id: string;
@@ -24,28 +23,6 @@ const RaceCard = ({
   country,
   distance,
 }: RaceCardProps) => {
-  function formatDate(date: string) {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const dateObject = new Date(date);
-    const month = months[dateObject.getMonth()];
-    const day = dateObject.getUTCDate();
-    const year = dateObject.getFullYear();
-
-    return `${month} ${day}, ${year}`;
-  }
   return (
     <Link to={`/race/${id}`}>
       <Card variant="outline" h="100%" w="100%" boxShadow="md">
