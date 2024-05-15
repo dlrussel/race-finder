@@ -1,5 +1,3 @@
-import { Card, CardHeader, Heading, Text, Divider } from "@chakra-ui/react";
-import { StarIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import styles from "./RaceCard.module.css";
 import formatDate from "../../utilities/formatDate";
@@ -19,36 +17,25 @@ const RaceCard = ({
   name,
   date,
   city,
-  state,
   country,
   distance,
 }: RaceCardProps) => {
   return (
     <Link to={`/race/${id}`}>
-      <Card variant="outline" h="100%" w="100%" boxShadow="md">
-        <CardHeader>
-          <Heading size="md" pb={3}>
-            {name}
-          </Heading>
-          <span className={styles.card__detailsDistance}>{distance}</span>
-        </CardHeader>
-        <Divider orientation="horizontal" />
-        <div className={styles.card__details}>
-          <Text>{formatDate(date)}</Text>
+      <div className={styles.card}>
+        <div className={styles.card__mainContent}>
+          <span className={styles.card__date}>{formatDate(date)}</span>
+          <h2 className={styles.card__heading}>{name}</h2>
 
-          <div className={styles.card__detailsRating}>
-            <span>4.0</span>
-            <span>
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
-            </span>
-            <span>(372)</span>
-          </div>
-          <Text>{`${city}, ${state}, ${country}`}</Text>
+          <span className={styles.card__distance}>{distance}</span>
         </div>
-      </Card>
+        <div className={styles.card__subContent}>
+          <p>{`${city}, ${country}`}</p>
+          <Link className={styles.card__detailsButton} to={`/race/${id}`}>
+            Details
+          </Link>
+        </div>
+      </div>
     </Link>
   );
 };
