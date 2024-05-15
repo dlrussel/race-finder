@@ -1,4 +1,4 @@
-import { Spinner, Heading, Text } from "@chakra-ui/react";
+import { Spinner, Text } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import fetchRaceDetails from "../fetchRaceDetails";
@@ -15,8 +15,11 @@ export default function RaceDetails() {
 
   return (
     <>
-      <Heading as="h2">{race.name}</Heading>
+      <h2>{race.name}</h2>
       <Text>{`${race.city}, ${race.state}, ${race.country}`}</Text>
+      <a href={race.registration_link} target="_blank">
+        Register now
+      </a>
     </>
   );
 }

@@ -8,7 +8,6 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-// import fetchRaceList from "../fetchRaceList";
 import RaceCard from "./RaceCard/RaceCard";
 import { useState } from "react";
 import fetchSearch from "../fetchSearch";
