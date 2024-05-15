@@ -4,6 +4,7 @@ import RacesGrid from "./components/RacesGrid";
 import heroImage from "./assets/hero.jpg";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RaceDetails from "./components/RaceDetails";
+import Navigation from "./components/Navigation/Navigation";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,6 +19,7 @@ function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
+        <Navigation />
         <Box
           display="flex"
           alignItems="center"

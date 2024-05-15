@@ -64,7 +64,11 @@ export default function RacesGrid() {
           </Button>
         </form>
       </Card>
-      <Grid templateColumns={{ lg: "repeat(3, 1fr)" }} gap={5} m={5}>
+      <Grid
+        templateColumns={{ lg: "repeat(3, 1fr)", md: "repeat(2, 1fr)" }}
+        gap={5}
+        m={5}
+      >
         {races.length ? (
           races.map((race) => (
             <GridItem key={race.id}>

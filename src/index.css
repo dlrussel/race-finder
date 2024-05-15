@@ -17,3 +17,7 @@ html {
 body {
   background-color: var(--light-grey);
 }
+
+h2 {
+  font-size: 32px;
+}

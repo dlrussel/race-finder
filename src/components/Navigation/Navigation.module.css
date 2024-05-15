@@ -1,0 +1,7 @@
+.navigation {
+  padding: 16px;
+}
+
+.navigation__logo {
+  max-width: 200px;
+}
