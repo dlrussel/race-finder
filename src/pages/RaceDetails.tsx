@@ -15,7 +15,7 @@ export default function RaceDetails() {
   const race = results?.data?.race;
 
   return (
-    <Box px={4}>
+    <Box px={4} py={10}>
       <Heading as="h2">{race.name}</Heading>
       <Text>Date: {formatDate(race.date)}</Text>
       <Text mb={3}>{`${race.city}, ${race.state}, ${race.country}`}</Text>
