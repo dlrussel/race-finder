@@ -21,3 +21,18 @@ body {
 h2 {
   font-size: 32px;
 }
+
+.button {
+  padding: 12px 24px;
+  border: solid 1px #0d1619;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #d3d3d3;
+}
