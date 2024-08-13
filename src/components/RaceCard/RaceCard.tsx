@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./RaceCard.module.css";
 import formatDate from "../../utilities/formatDate";
 
+let Distance: "5K" | "10K" | "Half-Marathon" | "Marathon" | "Ultra";
 type RaceCardProps = {
   id: string;
   name: string;
@@ -9,7 +10,7 @@ type RaceCardProps = {
   city: string;
   state: string;
   country: string;
-  distance: string;
+  distance: typeof Distance;
 };
 
 const RaceCard = ({
