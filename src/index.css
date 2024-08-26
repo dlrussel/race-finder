@@ -2,6 +2,10 @@
   margin: 0 auto;
   --light-grey: #f9f9f9;
   --light-pink: #fbe2fa;
+  --light-orange: #ffd7c4;
+  --dark-orange: #ac6a52;
+  --light-purple: #b6c8f1;
+  --dark-purple: #38476b;
 }
 
 html {

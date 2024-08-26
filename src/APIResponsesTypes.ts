@@ -1,4 +1,4 @@
-export type Distance = "5K" | "10K" | "Half-Marathon" | "Marathon";
+export type Distance = "5K" | "10K" | "Half-Marathon" | "Marathon" | "Ultra";
 
 export interface Race {
   id: string;

@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import styles from "./RaceCard.module.css";
 import formatDate from "../../utilities/formatDate";
+import type { Distance } from "../../APIResponsesTypes";
+import classNames from "classnames/bind";
 
-let Distance: "5K" | "10K" | "Half-Marathon" | "Marathon" | "Ultra";
 type RaceCardProps = {
   id: string;
   name: string;
@@ -10,7 +11,7 @@ type RaceCardProps = {
   city: string;
   state: string;
   country: string;
-  distance: typeof Distance;
+  distance: Distance;
 };
 
 const RaceCard = ({
@@ -21,9 +22,11 @@ const RaceCard = ({
   country,
   distance,
 }: RaceCardProps) => {
+  const cx = classNames.bind(styles);
+
   return (
     <Link to={`/race/${id}`}>
-      <div className={styles.card}>
+      <div className={cx({ card: true, [`card--${distance}`]: true })}>
         <div className={styles.card__mainContent}>
           <span className={styles.card__date}>{formatDate(date)}</span>
           <h2 className={styles.card__heading}>{name}</h2>
