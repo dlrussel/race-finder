@@ -18,6 +18,13 @@
 .card--10K .card__mainContent {
   background-color: var(--light-pink);
 }
+.card--Half-Marathon .card__mainContent {
+  background-color: var(--light-green);
+}
+.card--Half-Marathon .card__distance {
+  color: var(--dark-green);
+  border-color: var(--dark-green);
+}
 .card--Marathon .card__mainContent {
   background-color: var(--light-orange);
 }
